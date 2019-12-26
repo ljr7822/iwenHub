@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body  style="background: lavender;
+  border-style: solid;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-color: black;
+  border-radius:15px;
+  font-size: 24px;
+text-align: center">
+<h2>根据学号来查询学生基本信息及选课情况</h2>
+{% if not msg %}
+{#    判断是否由msg这个参数，或者判断其值，没有的话则执行这段代码#}
+    <form method="post" action="/student/select/">
+        {% csrf_token %}
+        学生学号：<input type="text" name="stu_id" style="font-size: 24px" placeholder={{ id }}><br>
+        <input class="bc" type="submit" value="查询">
+    </form>
+{% else %}
+    <ul>
+        <li>学号： {{ stu_id }}</li>
+        <li>姓名： {{ stu_name }}</li>
+        <li>电话： {{ stu_phone }}</li>
+        <li>地址： {{ str_addr }}</li>
+        <li>院系： {{ stu_faculty }}</li>
+        <li>专业： {{ stu_major }}</li>
+    </ul>
+    <hr>
+    <ul>
+        {% for k, v in course_data.items %}
+            <li>{{ k }}: {{ v }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</body>
+</html>

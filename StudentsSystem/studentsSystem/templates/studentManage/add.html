@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加学生信息</title>
+</head>
+<body style="background: lavender;
+  border-style: solid;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-color: black;
+  border-radius:15px;
+  font-size: 24px;
+text-align: center">
+<h2 style="color: black;
+  border-style: solid;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-color: lavender;
+  text-align: center;
+  background-color: lavender">
+    请在下列信息栏中填入学生的基本信息
+</h2>
+<form method="post" action="{% url 'student:add' %}" >
+    {% csrf_token %}
+    学生学号：<input type="text" name="stu_id" style="font-size: 24px"/><br><br>
+    学生姓名：<input type="text" name="stu_name" style="font-size: 24px"/><br><br>
+    {% if msg %}
+        <h5>{{ msg }}</h5><br>
+    {% endif %}
+    学生电话：<input type="text" name="stu_phone" style="font-size: 24px"/><br><br>
+    学生地址：<input type="text" name="str_addr" style="font-size: 24px"/><br><br>
+    学生院系：<input type="text" name="stu_faculty" style="font-size: 24px"/><br><br>
+    学生专业：<input type="text" name="stu_major" style="font-size: 24px"/><br><br>
+    <input class="bc" type="submit" value="保存"  style="font-size: 24px; color: #1E88C7;width:200px; height:50px;background-color: lavender; border-radius:15px"/>
+    {% if error %}
+        <h5>{{ error }}</h5><br>
+    {% endif %}
+    {% if sucess %}
+        <h5>{{ sucess }}</h5><br>
+    {% endif %}
+</form>
+</body>
+</html>
